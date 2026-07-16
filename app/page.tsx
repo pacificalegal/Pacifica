@@ -29,8 +29,14 @@ export default async function Home() {
             <span className="gold-rule" />
             <p className="lede">Expert legal support when you need it most.<br/>Clear coverage. Simple process. Total peace of mind.</p>
             <div className="hero-actions">
-              <Link className="button button-gold" href="/portal">Create an account</Link>
-              <Link className="button button-outline" href="/portal">Client login</Link>
+              {userId ? (
+                <Link className="button button-gold" href="/portal">Go to member portal</Link>
+              ) : (
+                <>
+                  <Link className="button button-gold" href="/portal">Create an account</Link>
+                  <Link className="button button-outline" href="/portal">Client login</Link>
+                </>
+              )}
             </div>
           </div>
 
@@ -54,7 +60,7 @@ export default async function Home() {
       </section>
       <InteractiveSections />
       <section className="attorney-network" id="attorneys">
-        <div className="network-copy"><p className="eyebrow">Pacifica attorney network</p><h2>Help members.<br/>Grow your practice.</h2><p>Pacifica works with independent attorneys who want to receive organized, coverage-screened legal matters in the areas they choose to handle.</p><a href="mailto:pacificalegalinsurance@gmail.com?subject=Pacifica%20Attorney%20Network%20Application" className="button button-gold">Apply to join the network</a></div>
+        <div className="network-copy"><p className="eyebrow">Pacifica attorney network</p><h2>Help members.<br/>Grow your practice.</h2><p>Pacifica works with independent attorneys who want to receive organized, coverage-screened legal matters in the areas they choose to handle.</p><Link href="/attorney-network/apply" className="button button-gold">Apply to join the network</Link></div>
         <div className="network-benefits"><article><span>01</span><div><h3>Choose your practice areas</h3><p>Receive matters that align with your experience, licensing, and availability.</p></div></article><article><span>02</span><div><h3>Organized client intake</h3><p>Review the member’s description, deadlines, and uploaded documents in one secure place.</p></div></article><article><span>03</span><div><h3>Direct case communication</h3><p>Connect with assigned members and keep the Pacifica team informed of important status changes.</p></div></article><article><span>04</span><div><h3>Simplified administration</h3><p>Manage assignments and supporting records without chasing documents across separate inboxes.</p></div></article></div>
       </section>
       <section className="partner-band"><div><p className="eyebrow dark">Offer Pacifica</p><h2>Protection for your employees, members, or customers.</h2></div><div className="partner-options"><article><b>Employers</b><p>Add practical legal support to your employee benefits package.</p><a href="mailto:pacificalegalinsurance@gmail.com?subject=Employer%20Partnership">Explore employer plans →</a></article><article><b>Brokers</b><p>Offer a focused legal-protection option alongside other client benefits.</p><a href="mailto:pacificalegalinsurance@gmail.com?subject=Broker%20Partnership">Work with Pacifica →</a></article><article><b>Organizations</b><p>Create a tailored program for associations, membership groups, and partners.</p><a href="mailto:pacificalegalinsurance@gmail.com?subject=Organization%20Partnership">Discuss a partnership →</a></article></div></section>

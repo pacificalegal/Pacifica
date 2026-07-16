@@ -16,6 +16,8 @@ export async function ensureSchema() {
   await sql`CREATE TABLE IF NOT EXISTS memberships (clerk_user_id text PRIMARY KEY, email text NOT NULL, stripe_customer_id text, stripe_subscription_id text, status text NOT NULL DEFAULT 'pending', current_period_end timestamptz, updated_at timestamptz NOT NULL DEFAULT now())`;
   await sql`CREATE INDEX IF NOT EXISTS acceptances_user_idx ON membership_acceptances (clerk_user_id, accepted_at DESC)`;
   await sql`CREATE INDEX IF NOT EXISTS memberships_customer_idx ON memberships (stripe_customer_id)`;
+  await sql`CREATE TABLE IF NOT EXISTS attorney_applications (id uuid PRIMARY KEY, full_name text NOT NULL, firm_name text, email text NOT NULL, phone text NOT NULL, state text, bar_number text, practice_areas text, message text, status text NOT NULL DEFAULT 'new', ip_address text, user_agent text, created_at timestamptz NOT NULL DEFAULT now())`;
+  await sql`CREATE INDEX IF NOT EXISTS attorney_applications_created_idx ON attorney_applications (created_at DESC)`;
 }
 
 export async function getMembership(userId: string) {
@@ -32,4 +34,5 @@ export function isMembershipActive(status?: string | null) {
 export function adminEmails() {
   return (process.env.ADMIN_EMAILS || "").split(",").map(x => x.trim().toLowerCase()).filter(Boolean);
 }
+
 
