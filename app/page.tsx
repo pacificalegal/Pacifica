@@ -1,5 +1,6 @@
 import Link from "next/link";
 import InteractiveSections from "./interactive-sections";
+import { auth } from "@clerk/nextjs/server";
 
 const features = [
   ["✓", "Trusted protection", "Practical legal support when it matters most."],
@@ -8,7 +9,8 @@ const features = [
   ["◇", "Clear & transparent", "$600 annual membership with $50 monthly installments."],
 ];
 
-export default function Home() {
+export default async function Home() {
+  const { userId } = await auth();
   return (
     <main>
       <section className="hero-shell">
@@ -17,7 +19,7 @@ export default function Home() {
           <nav aria-label="Main navigation">
             <a href="#coverage">Coverage</a><a href="#how">How it works</a><a href="#attorneys">Attorney Network</a><a href="#resources">Resources</a><a href="#about">About</a>
           </nav>
-          <Link className="login-link" href="/portal">Client login</Link>
+          <Link className="login-link" href="/portal">{userId ? "Member portal" : "Client login"}</Link>
         </header>
 
         <div className="hero-grid">

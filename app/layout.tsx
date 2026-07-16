@@ -1,3 +1,3 @@
-import type {Metadata} from "next";import {ClerkProvider} from "@clerk/nextjs";import "./globals.css";
+import type {Metadata} from "next";import {ClerkProvider} from "@clerk/nextjs";import "./globals.css";import "./portal-update.css";
 export const metadata:Metadata={title:"Pacifica Legal Insurance",description:"Legal protection, handled with confidence."};
 export default function RootLayout({children}:{children:React.ReactNode}){return <ClerkProvider><html lang="en"><body>{children}</body></html></ClerkProvider>}
